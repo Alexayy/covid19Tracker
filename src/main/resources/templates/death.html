@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>COVID-19 Deaths</title>
+    <link rel="icon" href="https://img.icons8.com/nolan/64/coronavirus.png" alt="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="https://img.icons8.com/nolan/64/coronavirus.png" width="30" height="30"
+             class="d-inline-block align-top" alt=""/>
+        COVID-19
+    </a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav justify-content-end">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/deaths">Deaths</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/recovery">Recoveries</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.who.int/news-room/q-a-detail/q-a-coronaviruses" target="_blank">About COVID-19</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">How to
+                    help?</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron">
+    <h1>COVID-19 Status Tracker</h1>
+    <p>
+        This Web Application tracks current casses of COVID-19. It's updated daily trough
+        <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData GihHub Repository</a>
+        and Novel Coronavirus (COVID-19) Cases, provided by <a
+            href="https://systems.jhu.edu/research/public-health/ncov/">JHU
+        CSSE</a>.
+    </p>
+</div>
+<div class="container">
+
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total reported death cases as of today.
+        <p>
+        <hr class="my-4">
+        <p>
+            <span>New death cases since yesterday: </span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+    </div>
+
+    <table class="table table-dark">
+        <tr>
+            <th>State</th>
+            <th>Country</th>
+            <th>Total Death Cases Reported</th>
+            <th>Death Cases Since yesterday</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}"></td>
+            <td th:text="${locationStat.diffFromPrevDay}"></td>
+        </tr>
+    </table>
+</div>
+<h4 class="my-4"></h4>
+<!-- Footer -->
+<footer class="page-footer font-small teal pt-4">
+
+    <!-- Footer Text -->
+    <div class="container-fluid text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Who am I?</h5>
+                <p>I am Alex, a software engineering student. I am 23 years old and I like coding, playing video games,
+                    blasting heavy metal and enjoying finer things in life/</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mb-md-0 mb-3">
+
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">About the site</h5>
+                <p>This site was made alongside a tutorial for Springboot. Since I haven't been productive ever since, I
+                    decided it might be a good time to make something helpful and worthwile while leanrning something
+                    new. Stay safe!</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Text -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://www.facebook.com/profile.php?id=100001669704325"> AlexC</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+</html>
